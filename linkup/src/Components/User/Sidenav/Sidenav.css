@@ -1,0 +1,88 @@
+* {
+  background-color: black;
+}
+.sidenav {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 0;
+  border-right: grey 2px solid;
+  width: 200px;
+  height: 100vh;
+}
+
+.sidenav__logo {
+  width: 120px;
+  margin: 0px;
+  margin-left: 6px;
+}
+
+.sidenav__buttons {
+  display: flex;
+  flex-direction: column;
+  padding-right: 30px;
+}
+
+.sidenav__buttons span,
+.sidenav__more span,
+.icon {
+  background: 0;
+}
+
+.sidenav__button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: white;
+  background: 0;
+  border: 0;
+  margin: 5px 10px 5px 10px;
+  padding: 10px 15px 10px 15px;
+  border-radius: 15px;
+  width: 100%;
+}
+
+.sidenav__button:hover {
+  cursor: pointer;
+  background-color: rgba(255, 255, 255, 0.128);
+}
+
+.sidenav__button > span {
+  font-size: 10px;
+  font-weight: bolder;
+  margin-left: 10px;
+}
+
+.sidenav__more {
+  position: fixed;
+  bottom: 3px;
+}
+
+@media (max-width: 720px) {
+  .sidenav {
+    background: black;
+    width: 80px;
+  }
+
+  .sidenav__button {
+    width: 70%;
+  }
+
+  .sidenav__button > span {
+    display: none;
+  }
+
+  .sidenav__logo {
+    width: 70px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .sidenav {
+
+    display: none;
+
+  }
+}
+
+

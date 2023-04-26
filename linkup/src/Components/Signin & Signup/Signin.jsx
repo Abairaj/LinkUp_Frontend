@@ -134,7 +134,7 @@ export default function SignIn({ value, admin }) {
             <Button
               type="submit"
               fullWidth
-              variant="contained"
+              variant="outlined"
               sx={{ mt: 3, mb: 2 }}
             >
               Sign In
@@ -150,7 +150,7 @@ export default function SignIn({ value, admin }) {
                     startIcon={<FacebookIcon />}
                     type="submit"
                     fullWidth
-                    variant="contained"
+                    variant="outlined"
                     sx={{ mt: 3, mb: 2 }}
                   >
                     Login With Facebook

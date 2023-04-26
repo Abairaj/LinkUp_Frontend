@@ -1,0 +1,64 @@
+
+.profilebar__avatar .avatar{
+    width: 9.5rem;
+    height: 9.5rem;
+}
+
+
+
+/* .profilebar{
+    display: flex;
+    flex-direction: row;
+    margin-top: 30px;
+}
+
+.profilebar__followerstab{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.profilebar_username{
+    display: flex;
+    flex-direction: row;
+    font-weight: 500;
+}
+
+.profilebar__followerstab > p,
+.profilebar_username > p{
+    padding: 12px;
+    
+}
+
+
+.profilebar__avatar{
+    padding-right: 40px;
+}
+.profilebar__fullname{
+    padding: 12px;
+}
+
+.profilebar__button{
+    background-color:antiquewhite;
+    color: black;
+    font-weight: 600;
+    padding: 0 7px 0 7px;
+    height: 32px;
+    margin-top: 9px;
+    border-radius: 20px;
+}
+
+.profilebar__button:hover{
+    background-color: darkgray;
+
+}
+
+.profilebar__type{
+    font-size: small;
+    color: grey;
+}
+
+.profilebar__fullname .fullname{
+    font-weight: 500px;
+}
+ */

@@ -1,4 +1,9 @@
-*{
-    background-color: black;
-    color: aliceblue;
+.profile {
+  display: flex;
+  flex-direction: row;
 }
+
+.profile__nav {
+  flex: 0.5;
+}
+
