@@ -50,7 +50,6 @@ const Sidenav = () => {
           <span className="sidenav__text">More</span>
         </button>
       </div>
-      
     </div>
   );
 };

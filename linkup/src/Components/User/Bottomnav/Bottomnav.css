@@ -1,0 +1,17 @@
+.bottomnav {
+  display: none;
+  position: fixed;
+  bottom: 0;
+}
+
+.bottomnav__icons button {
+  font-size: 20px;
+}
+
+@media (max-width: 1024px) {
+  .bottomnav {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+  }
+}
