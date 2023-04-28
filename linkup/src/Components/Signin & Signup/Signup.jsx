@@ -11,6 +11,9 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import axios from "axios";
+import { useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import logo from "./../../Assets/logotrans.png";
 import "./Signup.css";
 
@@ -45,11 +48,21 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
+  const navigate = useNavigate();
+  const ApiURL = useSelector((state) => state.ApiURL.ApiURL);
   const { register, handleSubmit, control, formState } = useForm();
   const { errors } = formState;
 
   const onFormSubmit = (data) => {
-    console.log(data);
+    const response = axios
+      .post(`${ApiURL}/users/register/`, data)
+      .then((response) => {
+        if (response.status == 201) {
+          navigate("/signin");
+        } else if (response.status == 400) {
+          alert("signup failed try again");
+        }
+      });
   };
 
   const onErrors = (errors) => {

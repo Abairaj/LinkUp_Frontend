@@ -10,6 +10,11 @@ import Typography from "@mui/material/Typography";
 import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
+import Cookies from 'js-cookie'
 import logo from "./../../Assets/logotrans.png";
 import "./Signin.css";
 
@@ -43,16 +48,31 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn({ value, admin }) {
+export default function SignIn({ value, admin,url}) {
+  const[formerror,setFormerror]=React.useState()
+  const navigate = useNavigate()
+  const ApiURL = useSelector(state=>state.ApiURL.ApiURL)
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
+  let target;
+  admin?target='/admin_pannel':target='/home'
 
   const onFormsubmit = (data) => {
-    console.log(data);
+    const response = axios.post(`${ApiURL}/${url}`,data).then((response)=>{
+      if(response.status===200){
+        console.log(response)
+        Cookies.set('token',response.data.token)
+        Cookies.set('id',response.data.id)
+        navigate(target)
+      }}).catch(error=>{
+      if(error.response.status===401){
+        setFormerror("username or password not valid")
+      }else{
+        setFormerror("an error occured please try again later")
+      }
+    })
   };
-  const onErrorsubmit = (error) => {
-    console.log(error);
-  };
+
 
   return (
     <ThemeProvider theme={theme}>
@@ -90,10 +110,20 @@ export default function SignIn({ value, admin }) {
           <Box
             component="form"
             noValidate
-            onSubmit={handleSubmit(onFormsubmit, onErrorsubmit)}
+            onSubmit={handleSubmit(onFormsubmit)}
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
+
+              {formerror&&
+              
+              (
+                <Grid item xs={15}>
+                  <p className="text-red-700 text-sm">{formerror}</p>
+                </Grid>
+              )
+              
+                }
               <Grid item xs={12}>
                 <TextField
                   required
