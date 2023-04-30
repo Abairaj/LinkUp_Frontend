@@ -14,28 +14,28 @@ const Bottomnav = () => {
     <div className="bottomnav bg-black">
       <div className="bottomnav__icons flex justify-around pt-4 pb-4">
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <HomeIcon className="group-hover:bg-slate-700" />
+          <HomeIcon className="icon last:group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <ExploreIcon className="group-hover:bg-slate-700" />
+          <ExploreIcon className="icon group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <SearchIcon className="group-hover:bg-slate-700" />
+          <SearchIcon className=" icon group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <MovieIcon className="group-hover:bg-slate-700" />
+          <MovieIcon className="icon group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <ChatIcon className="group-hover:bg-slate-700" />
+          <ChatIcon className=" icon group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <NotificationsActiveIcon className="group-hover:bg-slate-700" />
+          <NotificationsActiveIcon className="icon group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <AddCircleOutlineIcon className="group-hover:bg-slate-700" />
+          <AddCircleOutlineIcon className="icon group-hover:bg-slate-700" />
         </button>
         <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <MenuIcon className="group-hover:bg-slate-700" />
+          <MenuIcon className="icon group-hover:bg-slate-700" />
         </button>
       </div>
     </div>

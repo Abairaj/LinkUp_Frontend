@@ -1,3 +1,3 @@
 import { createAction } from "@reduxjs/toolkit";
 
-export const UserProfileAction = createAction("Userdetails")
+export const UserProfileAction = createAction("Userdetails");

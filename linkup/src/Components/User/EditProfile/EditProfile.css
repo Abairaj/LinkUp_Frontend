@@ -4,6 +4,69 @@
 
 .profileedit__area {
   flex: 0.7;
+  height: 100%;
 }
 
+.editprofile__right {
+  height: 100vh;
+  width: 50%;
+  padding-bottom: 60px;
+}
 
+.editprofile__left {
+  width: 100%;
+  height: 100%;
+  padding-bottom: 60px;
+}
+
+@media screen and (max-width: 1000px) {
+  .profileedit__sidenav {
+    flex: 0;
+  }
+
+  .profileedit__area {
+    flex: 1;
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .editprofile__right {
+    display: none;
+  }
+
+  .profileedit__area {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: 0;
+    flex: none;
+    font-size: 26px;
+    padding-bottom: 100px;
+  }
+
+  .editprofile__left {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .profileedit__area {
+    width: 100%;
+    height: 100%;
+    position: sticky;
+    top: 0;
+    left: 0;
+    margin: 0;
+  }
+
+  .editprofile__left {
+    padding-bottom: 100px;
+  }
+}

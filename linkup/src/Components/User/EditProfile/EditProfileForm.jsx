@@ -36,7 +36,6 @@ export default function EditProfileForm({ value }) {
   const { register, handleSubmit, formState, reset } = useForm();
   const dispatch = useDispatch();
   const { errors } = formState;
-  const profile_img = null;
   console.log(User, "gfg");
 
   useEffect(() => {
@@ -52,7 +51,7 @@ export default function EditProfileForm({ value }) {
         defaultValues.bio = User.bio;
         defaultValues.full_name = User.full_name;
         defaultValues.phone = User.phone;
-        defaultValues.gender = User.gender
+        defaultValues.gender = User.gender;
 
         reset({ ...defaultValues });
       });
@@ -108,12 +107,17 @@ export default function EditProfileForm({ value }) {
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <div className="profileedit__profilebar flex flex-row">
-                  <Avatar className="profile_edit__avatar">
-                    {!profile_img && "A"}
-                  </Avatar>
+                  <Avatar
+                    src={
+                      User.profile
+                        ? `${ApiURL}/${User.profile}`
+                        : "https://th.bing.com/th/id/OIP.Ii15573m21uyos5SZQTdrAHaHa?pid=ImgDet&rs=1"
+                    }
+                    className="profile_edit__avatar"
+                  ></Avatar>
                   <div className="profile__name pl-3 pt-3">
                     <p>user name</p>
-                    <ProfileuploadPopup className="text-blue-800 text-sm"/>
+                    <ProfileuploadPopup className="text-blue-800 text-sm" />
                   </div>
                 </div>
               </Grid>
@@ -180,11 +184,11 @@ export default function EditProfileForm({ value }) {
                     name: "gender",
                     id: "uncontrolled-native",
                   }}
-                  {...register('gender')}
+                  {...register("gender")}
                 >
-                  <option value={'Male'}>Male</option>
-                  <option value={'Female'}>Female</option>
-                  <option value={'Other'}>Other</option>
+                  <option value={"Male"}>Male</option>
+                  <option value={"Female"}>Female</option>
+                  <option value={"Other"}>Other</option>
                 </NativeSelect>
               </Grid>
               <Grid item xs={12}>
