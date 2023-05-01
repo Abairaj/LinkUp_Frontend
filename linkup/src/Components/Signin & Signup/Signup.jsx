@@ -4,7 +4,6 @@ import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
 import { DevTool } from "@hookform/devtools";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -13,8 +12,10 @@ import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import axios from "axios";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import FacebookLogin from "react-facebook-login";
 import logo from "./../../Assets/logotrans.png";
+import Cookies from 'js-cookie'
 import "./Signup.css";
 
 function Copyright(props) {
@@ -48,10 +49,34 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
+  const Fb_loginref = React.useRef(null)
   const navigate = useNavigate();
+  const [accessToken, setAccessToken] = React.useState(null);
   const ApiURL = useSelector((state) => state.ApiURL.ApiURL);
   const { register, handleSubmit, control, formState } = useForm();
   const { errors } = formState;
+
+  const handleFacebookResponse = (response) => {
+    console.log(response,'kfkdkfmdkfkdfd');
+    setAccessToken(response.accessToken);
+    handleFB_submit(response.accessToken)
+  };
+
+  const componentClicked = (data) => {
+    console.log("this is data", data);
+  };
+
+  const handleFB_submit = (accesstoken) => {
+    axios
+      .post(`${ApiURL}/socialauth/dj-rest-auth/facebook/`, { access_token: accesstoken })
+      .then((response) => {
+        console.log(response.config.data.access_token)
+        Cookies.set('token',response.config.data)
+        navigate('/home')
+        
+        console.log(response, "kfkdjfdkfjkd");
+      });
+  };
 
   const onFormSubmit = (data) => {
     const response = axios
@@ -104,9 +129,27 @@ export default function SignUp() {
             fullWidth
             variant="contained"
             sx={{ mt: 3, mb: 2 }}
+            onClick={()=>{
+              setTimeout(() => {
+              }, 100)
+            }}
           >
+
             Login With Facebook
           </Button>
+
+
+          <FacebookLogin
+            appId="716864823524971"
+            fields="name,email,picture"
+            callback={handleFacebookResponse}
+            onClick={componentClicked}
+            render={(renderProps) => (
+              <button type="button" onClick={renderProps.onClick}>
+                Sign up with Facebook
+              </button>
+            )}
+          />
 
           <Typography component="h1" variant="h5">
             Sign up
@@ -211,7 +254,7 @@ export default function SignUp() {
             </Button>
             <Grid container justifyContent="flex-end">
               <Grid item>
-                <Link href="#" variant="body2">
+                <Link to="/signin" className="text-sm text-blue-800">
                   Already have an account? Sign in
                 </Link>
               </Grid>

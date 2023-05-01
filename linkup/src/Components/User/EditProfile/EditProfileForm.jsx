@@ -116,7 +116,7 @@ export default function EditProfileForm({ value }) {
                     className="profile_edit__avatar"
                   ></Avatar>
                   <div className="profile__name pl-3 pt-3">
-                    <p>user name</p>
+                    <p>{User.username}</p>
                     <ProfileuploadPopup className="text-blue-800 text-sm" />
                   </div>
                 </div>

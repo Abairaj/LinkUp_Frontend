@@ -83,7 +83,9 @@ export default function ProfileuploadPopup() {
             <button className="pt-1 pb-1">Remove Current Photo</button>
           </div>
           <div className="popup_card_3rd pb-1 pt-1 text-center">
-            <button className="pb-1 pt-1">Close</button>
+            <button onClick={handleClose} className="pb-1 pt-1">
+              Close
+            </button>
           </div>
         </div>
       </Modal>

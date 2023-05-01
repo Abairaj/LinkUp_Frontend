@@ -3,7 +3,6 @@ import { useForm } from "react-hook-form";
 import Button from "@mui/material/Button";
 import CssBaseline from "@mui/material/CssBaseline";
 import TextField from "@mui/material/TextField";
-import Link from "@mui/material/Link";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
@@ -11,12 +10,14 @@ import Container from "@mui/material/Container";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 import FacebookIcon from "@mui/icons-material/Facebook";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { useEffect } from "react";
-import Cookies from 'js-cookie'
+import Cookies from "js-cookie";
 import logo from "./../../Assets/logotrans.png";
 import "./Signin.css";
+import { useDispatch } from "react-redux";
+import { UserProfileAction } from "../../Store/Actions/UserProfileAction";
+import { useQuery, useQueryClient } from "react-query";
 
 function Copyright(props) {
   return (
@@ -48,31 +49,36 @@ const theme = createTheme({
   },
 });
 
-export default function SignIn({ value, admin,url}) {
-  const[formerror,setFormerror]=React.useState()
-  const navigate = useNavigate()
-  const ApiURL = useSelector(state=>state.ApiURL.ApiURL)
+export default function SignIn({ value, admin, url }) {
+  const [formerror, setFormerror] = React.useState();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const ApiURL = useSelector((state) => state.ApiURL.ApiURL);
   const { register, handleSubmit, formState } = useForm();
   const { errors } = formState;
   let target;
-  admin?target='/admin_pannel':target='/home'
+  admin ? (target = "/admin_pannel") : (target = "/home");
 
   const onFormsubmit = (data) => {
-    const response = axios.post(`${ApiURL}/${url}`,data).then((response)=>{
-      if(response.status===200){
-        console.log(response)
-        Cookies.set('token',response.data.token)
-        Cookies.set('id',response.data.id)
-        navigate(target)
-      }}).catch(error=>{
-      if(error.response.status===401){
-        setFormerror("username or password not valid")
-      }else{
-        setFormerror("an error occured please try again later")
-      }
-    })
+    const response = axios
+      .post(`${ApiURL}/${url}`, data)
+      .then((response) => {
+        if (response.status === 200) {
+          console.log(response.data.user);
+          dispatch(UserProfileAction(response.data.user));
+          Cookies.set("token", response.data.token);
+          Cookies.set("id", response.data.id);
+          navigate(target);
+        }
+      })
+      .catch((error) => {
+        if (error.response.status === 401) {
+          setFormerror("username or password not valid");
+        } else {
+          setFormerror("an error occured please try again later");
+        }
+      });
   };
-
 
   return (
     <ThemeProvider theme={theme}>
@@ -114,16 +120,11 @@ export default function SignIn({ value, admin,url}) {
             sx={{ mt: 3 }}
           >
             <Grid container spacing={2}>
-
-              {formerror&&
-              
-              (
+              {formerror && (
                 <Grid item xs={15}>
                   <p className="text-red-700 text-sm">{formerror}</p>
                 </Grid>
-              )
-              
-                }
+              )}
               <Grid item xs={12}>
                 <TextField
                   required
@@ -186,7 +187,7 @@ export default function SignIn({ value, admin,url}) {
                     Login With Facebook
                   </Button>
                 </Grid>
-                <Grid item xs={12}>
+                <Grid className="text-center" item xs={12}>
                   <Link
                     sx={{
                       color: "white",
@@ -200,7 +201,7 @@ export default function SignIn({ value, admin,url}) {
                 <Grid item xs={12}>
                   <Grid container justifyContent="flex-end">
                     <Grid item>
-                      <Link href="/signup" variant="body2">
+                      <Link to="/signup" className="text-sm text-blue-800">
                         Don't have an account? Sign Up
                       </Link>
                     </Grid>

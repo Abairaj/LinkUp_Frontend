@@ -17,7 +17,7 @@ const Post=() => {
     <MoreHorizIcon/>
     </div>
     <div className="post__content">
-        <img src="https://cdn2.psychologytoday.com/assets/styles/article_inline_half_caption/public/field_blog_entry_images/2023-04/istockphoto-1314317558-170667a.jpg?itok=O4nIuNRB" alt="" />
+        <img src="https://images.unsplash.com/photo-1682687982423-295485af248a?ixlib=rb-4.0.3&ixid=MnwxMjA3fDF8MHxlZGl0b3JpYWwtZmVlZHwxfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=500&q=60" alt="" />
     </div>
     <div className="post_footer">
         <div className="post__footerIcons">

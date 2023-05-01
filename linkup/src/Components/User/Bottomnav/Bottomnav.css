@@ -16,7 +16,6 @@
     justify-content: center;
     width: 100%;
     border: solid 1px white;
-
   }
 
   .bottomnav__icons button {
@@ -25,6 +24,4 @@
     margin-right: 5px;
     padding: 0;
   }
-
-
 }

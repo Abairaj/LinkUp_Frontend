@@ -9,13 +9,16 @@ import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../Assets/logotrans.png";
+import { useNavigate } from "react-router-dom";
+import { Avatar } from "@mui/material";
 
 const Sidenav = () => {
+  const navigate = useNavigate();
   return (
     <div className="sidenav">
       <img className="sidenav__logo" src={logo} alt="icon" />
       <div className="sidenav__buttons">
-        <button className="sidenav__button">
+        <button onClick={() => navigate("/home")} className="sidenav__button">
           <HomeIcon className="icon" />
           <span>Home</span>
         </button>
@@ -42,6 +45,13 @@ const Sidenav = () => {
         <button className="sidenav__button">
           <AddCircleOutlineIcon className="icon" />
           <span>Create</span>
+        </button>
+        <button
+          onClick={() => navigate("/profile")}
+          className="sidenav__button"
+        >
+          <Avatar className="icon">A</Avatar>
+          <span className="sidenav__text">Abairaj.K</span>
         </button>
       </div>
       <div className="sidenav__more">
