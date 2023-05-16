@@ -3,19 +3,13 @@ import Box from "@mui/material/Box";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import Modal from "@mui/material/Modal";
 import { useRef } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
+
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import "./Comment.css";
 
 import {
   Avatar,
-  Button,
-  InputAdornment,
-  TextField,
-  colors,
 } from "@mui/material";
-import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
@@ -24,7 +18,7 @@ export default function OpenComment(props) {
   console.log(post_id, "kfdslgjdfkgndfkjgnfkjgnijfnriifn");
   const handleComments = () => {
     handleCommentOpen();
-    const response = axios
+    axios
       .get(`${import.meta.env.VITE_API_URL}/post/comment/?post_id=${post_id}`, {
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       })
@@ -35,12 +29,10 @@ export default function OpenComment(props) {
   };
 
   const [openComment, setOpenComment] = React.useState(false);
-  const navigate = useNavigate();
 
   const handleCommentOpen = () => setOpenComment(true);
   const handleCommentClose = () => setOpenComment(false);
   const [comment, setComment] = React.useState("");
-  const inputRef = useRef(null);
 
   return (
     <div>
@@ -98,6 +90,7 @@ export default function OpenComment(props) {
                       <div
                         className="comment_list overflow-y-auto pt-3"
                         style={{ maxHeight: "200px" }}
+                        key={obj.id}
                       >
                         <div className="comment_individual ">
                           <div className="comment_individual_profile flex flex-row pb-3 pt-3 ps-3">

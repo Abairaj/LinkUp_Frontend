@@ -1,12 +1,10 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
 import { Navigate } from "react-router-dom";
 import Preloader from "../Others/Preloader";
 
 export default function ProtectedRoute({ children }) {
-  const ApiURL = useSelector((state) => state.User.User);
   const [Is_loading, setIsLoading] = useState(true);
   const [is_auth, setIs_auth] = useState(false);
   useEffect(() => {

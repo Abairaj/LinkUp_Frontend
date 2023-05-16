@@ -1,19 +1,17 @@
-import { defineConfig } from 'vite';
-import reactRefresh from '@vitejs/plugin-react';
-import svgrPlugin from 'vite-plugin-svgr';
+import { defineConfig } from "vite";
+import reactRefresh from "@vitejs/plugin-react";
+import svgrPlugin from "vite-plugin-svgr";
 
 export default defineConfig({
   // Set esbuild loader for JSX syntax
-build: {
+  build: {
     loader: {
-      '.js': 'jsx',
-      '.jsx': 'jsx',
+      ".js": "jsx",
+      ".jsx": "jsx",
     },
   },
   // Other configuration options
-  build: {
-    outDir: 'build',
-  },
+
   plugins: [
     reactRefresh(),
     svgrPlugin({

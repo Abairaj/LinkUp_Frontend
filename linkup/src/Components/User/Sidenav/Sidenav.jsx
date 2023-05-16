@@ -10,7 +10,7 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../Assets/logotrans.png";
 import { useNavigate } from "react-router-dom";
-import { Avatar, Button } from "@mui/material";
+import { Avatar} from "@mui/material";
 import CreatePost from "../CreatePost/CreatePost";
 
 const Sidenav = () => {

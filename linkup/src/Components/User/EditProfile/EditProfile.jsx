@@ -14,7 +14,7 @@ const EditProfile = () => {
   const navigate = useNavigate();
   const logoutHandler = (e) => {
     e.preventDefault();
-    const response = axios
+    axios
       .post(`${ApiURL}/users/logout/`, null, {
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
       })

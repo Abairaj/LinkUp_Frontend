@@ -17,7 +17,6 @@ import logo from "./../../Assets/logotrans.png";
 import "./Signin.css";
 import { useDispatch } from "react-redux";
 import { UserProfileAction } from "../../Store/Actions/UserProfileAction";
-import { useQuery, useQueryClient } from "react-query";
 
 function Copyright(props) {
   return (
@@ -60,7 +59,7 @@ export default function SignIn({ value, admin, url }) {
   admin ? (target = "/admin_pannel") : (target = "/home");
 
   const onFormsubmit = (data) => {
-    const response = axios
+    axios
       .post(`${ApiURL}/${url}`, data)
       .then((response) => {
         if (response.status === 200) {
@@ -203,7 +202,7 @@ export default function SignIn({ value, admin, url }) {
                     <Grid container justifyContent="flex-end">
                       <Grid item>
                         <Link to="/signup" className="text-sm text-blue-800">
-                          Don't have an account? Sign Up
+                          Don&apos;t have an account? Sign Up
                         </Link>
                       </Grid>
                     </Grid>

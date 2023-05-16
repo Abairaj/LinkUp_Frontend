@@ -2,11 +2,10 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import "./Post.css";
-import { Avatar, InputAdornment, IconButton } from "@mui/material";
+import { Avatar} from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SendIcon from "@mui/icons-material/Send";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import BookmarkBorderIcon from "@mui/icons-material/BookmarkBorder";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import Cookies from "js-cookie";
@@ -45,7 +44,7 @@ const Post = () => {
       user: Cookies.get("id"),
       content: data[`comment-${postId}`],
     };
-    const response = axios
+    axios
       .post(
         `${import.meta.env.VITE_API_URL}/post/comment/${Cookies.get("id")}`,
         formdata,
@@ -119,8 +118,16 @@ const Post = () => {
           <div className="post" key={post.post_id}>
             <div className="post__header">
               <div className="post__headerAuthor">
-                {post.user.profile?<Avatar src={`${import.meta.env.VITE_API_URL}/${post.user.profile}`}/>:<Avatar className="avatar">{post.user.username.split('')[0]}</Avatar>}
-                 {post.user.username} .{" "}
+                {post.user.profile ? (
+                  <Avatar
+                    src={`${import.meta.env.VITE_API_URL}/${post.user.profile}`}
+                  />
+                ) : (
+                  <Avatar className="avatar">
+                    {post.user.username.split("")[0]}
+                  </Avatar>
+                )}
+                {post.user.username} .{" "}
                 <span>&nbsp;{`${getDuration(post.created_at)} `}</span>
               </div>
               <MoreHorizIcon />

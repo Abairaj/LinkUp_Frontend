@@ -14,7 +14,6 @@ import axios from "axios";
 import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "./../../Assets/logotrans.png";
-import Cookies from "js-cookie";
 import "./Signup.css";
 
 function Copyright(props) {
@@ -48,14 +47,13 @@ const theme = createTheme({
 });
 
 export default function SignUp() {
-  const Fb_loginref = React.useRef(null);
   const navigate = useNavigate();
   const ApiURL = useSelector((state) => state.ApiURL.ApiURL);
   const { register, handleSubmit, control, formState } = useForm();
   const { errors } = formState;
 
   const onFormSubmit = (data) => {
-    const response = axios
+    axios
       .post(`${ApiURL}/users/register/`, data)
       .then((response) => {
         if (response.status == 201) {
@@ -195,7 +193,7 @@ export default function SignUp() {
                       value:
                         /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=\[\]{}|;':",.<>\/?])[A-Za-z\d!@#$%^&*()_+\-=\[\]{}|;':",.<>\/?]{8,}$/,
                       message:
-                        "criterias : \n * Must be at least 8 letters \n * Contain atleast one lowercase and one uppercase letter \n *Contains atleast 1 digit \n * Contains atleast one special character. ",
+                        "criterias :  * Must be at least 8 letters  * Contain atleast one lowercase and one uppercase letter  *Contains atleast 1 digit  * Contains atleast one special character. ",
                     },
                   })}
                   autoComplete="new-password"

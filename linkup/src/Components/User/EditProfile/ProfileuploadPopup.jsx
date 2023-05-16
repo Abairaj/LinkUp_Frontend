@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
-import { Avatar, Button, Modal } from "@mui/material";
+import {Button, Modal } from "@mui/material";
 import "./ProfileUploadPopup.css";
 import axios from "axios";
 import { useSelector } from "react-redux";
@@ -22,7 +22,7 @@ export default function ProfileuploadPopup() {
   };
 
   const uploadImage = (image) => {
-    const response = axios
+    axios
       .patch(
         `${ApiURL}/users/user_profile/${Cookies.get("id")}`,
         { profile: image },

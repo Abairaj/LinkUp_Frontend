@@ -6,7 +6,6 @@ import {
   Button,
   InputAdornment,
   TextField,
-  colors,
 } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import PhotoIcon from "@mui/icons-material/Photo";
@@ -20,7 +19,7 @@ import { shareSuccessAction } from "../../../Store/Actions/ShareSuccessAction";
 import { useNavigate } from "react-router-dom";
 
 export default function CreatePost() {
-  const handleShare = (e) => {
+  const handleShare = () => {
     let media_type;
     // Determine media_type based on selectedPost (assuming it contains the filename)
     const fileExtension = selectedPost.name
@@ -42,7 +41,7 @@ export default function CreatePost() {
       user: Cookies.get("id"),
     };
 
-    const response = axios
+    axios
       .post(
         `${import.meta.env.VITE_API_URL}/post/create_post/${Cookies.get("id")}`,
         formdata,

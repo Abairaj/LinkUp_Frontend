@@ -3,7 +3,6 @@ import Sidenav from "../Components/User/Sidenav/Sidenav";
 import Bottomnav from "../Components/User/Bottomnav/Bottomnav";
 import styles from "./Messages.module.css";
 import SearchIcon from "@mui/icons-material/Search";
-import { Avatar } from "@mui/material";
 import Message_area from "./Message_area";
 import MessageSent_area from "./MessageSent_area";
 import UserMessageList from "./UserMessageList";
@@ -34,13 +33,11 @@ export default function Messages() {
               GENERAL
             </button>
           </div>
-          <UserMessageList/>
+          <UserMessageList />
         </div>
-<Message_area/>
+        <Message_area />
 
-{/* <MessageSent_area/> */}
-
-      
+        {/* <MessageSent_area/> */}
       </div>
       <Bottomnav />
     </div>
