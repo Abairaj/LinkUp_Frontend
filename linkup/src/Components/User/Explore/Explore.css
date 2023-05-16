@@ -1,0 +1,13 @@
+.explore_nav {
+  flex: 0.2;
+}
+
+/* .explore_post{
+    flex: 0.6;
+} */
+
+@media (max-width: 1024px) {
+  .explore_nav {
+    flex: 0;
+  }
+}

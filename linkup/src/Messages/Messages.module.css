@@ -1,0 +1,15 @@
+.messages {
+    display: flex;
+    flex-direction: row;
+  }
+
+.messages__sidenav{
+  flex: 0.3;
+}
+
+@media screen and (max-width: 1000px) {
+  .messages__sidenav{
+    flex: 0;
+  }
+
+}

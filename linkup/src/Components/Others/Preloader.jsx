@@ -4,7 +4,7 @@ import React from "react";
 
 export default function Preloader() {
   return (
-    <div class="loader">
+    <div className="loader">
       <h1>Loading .....</h1>
     </div>
   );

@@ -13,29 +13,53 @@ const Bottomnav = () => {
   return (
     <div className="bottomnav bg-black">
       <div className="bottomnav__icons flex justify-around pt-4 pb-4">
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <HomeIcon className="icon last:group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <HomeIcon
+            sx={{ fontSize: "30px" }}
+            className="icon last:group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <ExploreIcon className="icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <ExploreIcon
+            sx={{ fontSize: "30px" }}
+            className="icon group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <SearchIcon className=" icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <SearchIcon
+            sx={{ fontSize: "30px" }}
+            className=" icon group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <MovieIcon className="icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <MovieIcon
+            sx={{ fontSize: "30px" }}
+            className="icon group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <ChatIcon className=" icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <ChatIcon
+            sx={{ fontSize: "30px" }}
+            className=" icon group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <NotificationsActiveIcon className="icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <NotificationsActiveIcon
+            sx={{ fontSize: "30px" }}
+            className="icon group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <AddCircleOutlineIcon className="icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <AddCircleOutlineIcon
+            sx={{ fontSize: "30px" }}
+            className="icon group-hover:bg-slate-700"
+          />
         </button>
-        <button className="group hover:bg-slate-700 p-2 rounded-md">
-          <MenuIcon className="icon group-hover:bg-slate-700" />
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <MenuIcon
+            sx={{ fontSize: "30px" }}
+            className="icon group-hover:bg-slate-700"
+          />
         </button>
       </div>
     </div>

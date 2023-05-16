@@ -1,0 +1,4 @@
+.comment_list::-webkit-scrollbar {
+  width: 0;
+  background-color: transparent;
+}

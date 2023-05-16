@@ -16,20 +16,18 @@
     "js-cookie": "^3.0.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-facebook-login": "^4.1.1",
     "react-hook-form": "^7.43.9",
     "react-query": "^3.39.3",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.10.0",
     "sass": "^1.62.1",
-    "vite": "^4.3.3",
     "vite-plugin-svgr": "^2.4.0",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "vite",
     "build": "tsc && vite build",
-    "eject":"vite eject",
+    "eject": "vite eject",
     "serve": "vite preview"
   },
   "eslintConfig": {
@@ -52,6 +50,9 @@
   },
   "devDependencies": {
     "@hookform/devtools": "^4.3.1",
-    "tailwindcss": "^3.3.1"
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.23",
+    "tailwindcss": "^3.3.2",
+    "vite": "^4.3.3"
   }
 }

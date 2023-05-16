@@ -6,23 +6,20 @@
 .home__nav {
   flex: 0.2;
   background-color: black;
-
 }
 
 .home_timeline {
   flex: 0.7;
 }
 
-
-
 @media (max-width: 550px) {
-    .home__nav {
-      display: none;
-    }
-
-
-  
+  .home__nav {
+    display: none;
   }
+}
 
-
-  
+@media (max-width: 1024px) {
+  .home__nav {
+    display: none;
+  }
+}

@@ -1,0 +1,29 @@
+.search-bar-container {
+    position: relative;
+  }
+  
+  .search-bar {
+    position: absolute;
+    top: 0;
+    left: -200px;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    background-color: #eee;
+    transition: all 0.5s ease;
+  }
+  
+  .search-bar .open {
+    left: 0;
+  }
+  
+  .search-bar input[type="text"] {
+    flex: 1;
+    margin: 0 10px;
+  }
+  
+  .search-bar button {
+    margin-right: 10px;
+  }
+  

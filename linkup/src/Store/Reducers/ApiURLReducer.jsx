@@ -1,7 +1,7 @@
 import { createReducer } from "@reduxjs/toolkit";
 
 const initialState = {
-  ApiURL: "http://127.0.0.1:8000",
+  ApiURL:import.meta.env.VITE_API_URL,
 };
 
 export const ApiURLReducer = createReducer(initialState, (builder) => {

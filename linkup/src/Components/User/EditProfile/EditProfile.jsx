@@ -1,3 +1,4 @@
+import React from "react";
 import Bottomnav from "../Bottomnav/Bottomnav";
 import Sidenav from "../Sidenav/Sidenav";
 import "./EditProfile.css";
@@ -9,22 +10,23 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
 const EditProfile = () => {
-  const ApiURL = useSelector(state=>state.ApiURL.ApiURL)
-  const navigate = useNavigate()
-  const logoutHandler = (e)=>{
-    e.preventDefault()
-      const response = axios.post(`${ApiURL}/users/logout/`,null, {
+  const ApiURL = useSelector((state) => state.ApiURL.ApiURL);
+  const navigate = useNavigate();
+  const logoutHandler = (e) => {
+    e.preventDefault();
+    const response = axios
+      .post(`${ApiURL}/users/logout/`, null, {
         headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      }).then((response)=>{
-        Cookies.remove("id")
-        Cookies.remove('token')
-        navigate('/signin')
-      }).catch((error)=>{
-        console.log(error)
       })
-
-
-  }
+      .then((response) => {
+        Cookies.remove("id");
+        Cookies.remove("token");
+        navigate("/signin");
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="editprofile md:flex md:flex-row">
       <div className="profileedit__sidenav">
@@ -46,7 +48,10 @@ const EditProfile = () => {
             <button className="ps-3 pb-4 pt-4 text-bold hover:bg-slate-800">
               Privacy
             </button>
-            <button onClick={logoutHandler} className="ps-3 pb-4 pt-4 text-bold hover:bg-slate-800">
+            <button
+              onClick={logoutHandler}
+              className="ps-3 pb-4 pt-4 text-bold hover:bg-slate-800"
+            >
               Logout
             </button>
           </div>

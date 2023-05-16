@@ -10,7 +10,8 @@ import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
 import MenuIcon from "@mui/icons-material/Menu";
 import logo from "../../../Assets/logotrans.png";
 import { useNavigate } from "react-router-dom";
-import { Avatar } from "@mui/material";
+import { Avatar, Button } from "@mui/material";
+import CreatePost from "../CreatePost/CreatePost";
 
 const Sidenav = () => {
   const navigate = useNavigate();
@@ -19,32 +20,41 @@ const Sidenav = () => {
       <img className="sidenav__logo" src={logo} alt="icon" />
       <div className="sidenav__buttons">
         <button onClick={() => navigate("/home")} className="sidenav__button">
-          <HomeIcon className="icon" />
+          <HomeIcon sx={{ fontSize: "30px" }} className="icon" />
           <span>Home</span>
         </button>
         <button className="sidenav__button">
-          <SearchIcon className="icon" />
+          <SearchIcon sx={{ fontSize: "30px" }} className="icon" />
           <span>Search</span>
         </button>
-        <button className="sidenav__button">
-          <ExploreIcon className="icon" />
+        <button
+          onClick={() => navigate("/explore")}
+          className="sidenav__button"
+        >
+          <ExploreIcon sx={{ fontSize: "30px" }} className="icon" />
           <span>Explore</span>
         </button>
-        <button className="sidenav__button">
-          <MovieIcon className="icon" />
+        <button onClick={() => navigate("/reels")} className="sidenav__button">
+          <MovieIcon sx={{ fontSize: "30px" }} className="icon" />
           <span>Reels</span>
         </button>
-        <button className="sidenav__button">
-          <ChatIcon className="icon" />
+        <button
+          onClick={() => navigate("/messages")}
+          className="sidenav__button"
+        >
+          <ChatIcon sx={{ fontSize: "30px" }} className="icon" />
           <span>Messages</span>
         </button>
         <button className="sidenav__button">
-          <NotificationsActiveIcon className="icon" />
+          <NotificationsActiveIcon sx={{ fontSize: "30px" }} className="icon" />
           <span>Notification</span>
         </button>
+
         <button className="sidenav__button">
-          <AddCircleOutlineIcon className="icon" />
-          <span>Create</span>
+          <AddCircleOutlineIcon sx={{ fontSize: "30px" }} />
+          <span>
+            <CreatePost />
+          </span>
         </button>
         <button
           onClick={() => navigate("/profile")}
@@ -56,7 +66,7 @@ const Sidenav = () => {
       </div>
       <div className="sidenav__more">
         <button className="sidenav__button">
-          <MenuIcon className="icon" />
+          <MenuIcon sx={{ fontSize: "30px" }} className="icon" />
           <span className="sidenav__text">More</span>
         </button>
       </div>

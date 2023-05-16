@@ -1,0 +1,22 @@
+@media (max-width: 1000px) {
+    .reels__window {
+    width: 100vw;
+    display: unset;
+
+    }
+
+    .Reels{
+        display:unset;
+      
+    }
+
+    .button_bar{
+        padding-bottom: 60px;
+    }
+
+    .reels_area{
+        padding: 40px 40px 40px 40px;
+    }
+
+ 
+  }

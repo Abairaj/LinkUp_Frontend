@@ -81,138 +81,140 @@ export default function SignIn({ value, admin, url }) {
   };
 
   return (
-    <ThemeProvider theme={theme}>
-      <Container component="main" maxWidth="xs">
-        <CssBaseline />
-        <Box
-          sx={{
-            marginTop: 4,
-            padding: "20px",
-            paddingTop: "0px",
-            paddingBottom: "0px",
-            display: "flex",
-            flexDirection: "column",
-            border: `2px solid`,
-            borderColor: "grey.500",
-            borderRadius: "16px",
-            alignItems: "center",
-          }}
-        >
+    <div className={admin ? "h-screen pt-20" : "h-full pt-20"}>
+      <ThemeProvider theme={theme}>
+        <Container component="main" maxWidth="xs">
+          <CssBaseline />
           <Box
-            component="img"
             sx={{
-              height: 233,
-              width: 350,
-              maxHeight: { xs: 150, md: 200 },
-              maxWidth: { xs: 200, md: 220 },
+              marginTop: 0,
+              padding: "20px",
+              paddingTop: "0px",
+              paddingBottom: "0px",
+              display: "flex",
+              flexDirection: "column",
+              border: `2px solid`,
+              borderColor: "grey.500",
+              borderRadius: "16px",
+              alignItems: "center",
             }}
-            alt="The house from the offer."
-            src={logo}
-          />
-
-          <Typography component="h1" variant="h5">
-            {value}
-          </Typography>
-          <Box
-            component="form"
-            noValidate
-            onSubmit={handleSubmit(onFormsubmit)}
-            sx={{ mt: 3 }}
           >
-            <Grid container spacing={2}>
-              {formerror && (
-                <Grid item xs={15}>
-                  <p className="text-red-700 text-sm">{formerror}</p>
-                </Grid>
-              )}
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  id="email"
-                  label="Email Address"
-                  name="email"
-                  {...register("email", {
-                    required: "Email is required",
-                    pattern: {
-                      value:
-                        /^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
-                      message: "Invalid email format",
-                    },
-                  })}
-                  autoComplete="email"
-                />
-                <p className="error">{errors.email?.message}</p>
-              </Grid>
+            <Box
+              component="img"
+              sx={{
+                height: 233,
+                width: 350,
+                maxHeight: { xs: 150, md: 200 },
+                maxWidth: { xs: 200, md: 220 },
+              }}
+              alt="The house from the offer."
+              src={logo}
+            />
 
-              <Grid item xs={12}>
-                <TextField
-                  required
-                  fullWidth
-                  name="password"
-                  label="Password"
-                  type="password"
-                  id="password"
-                  {...register("password", {
-                    required: "Password Field can't be empty",
-                  })}
-                  autoComplete="new-password"
-                />
-                <p className="error">{errors.password?.message}</p>
-              </Grid>
-              <Grid item xs={12}></Grid>
-            </Grid>
-            <Button
-              type="submit"
-              fullWidth
-              variant="outlined"
-              sx={{ mt: 3, mb: 2 }}
+            <Typography component="h1" variant="h5">
+              {value}
+            </Typography>
+            <Box
+              component="form"
+              noValidate
+              onSubmit={handleSubmit(onFormsubmit)}
+              sx={{ mt: 3 }}
             >
-              Sign In
-            </Button>
-
-            {!admin && (
-              <Grid container spacing={2} alignItems="center">
-                <Grid item xs={12} md={6}>
-                  <h1>OR</h1>
-                </Grid>
-                <Grid item xs={12} md={6}>
-                  <Button
-                    startIcon={<FacebookIcon />}
-                    type="submit"
-                    fullWidth
-                    variant="outlined"
-                    sx={{ mt: 3, mb: 2 }}
-                  >
-                    Login With Facebook
-                  </Button>
-                </Grid>
-                <Grid className="text-center" item xs={12}>
-                  <Link
-                    sx={{
-                      color: "white",
-                      textDecoration: "none",
-                      cursor: "pointer",
-                    }}
-                  >
-                    Forgot Password?
-                  </Link>
-                </Grid>
+              <Grid container spacing={2}>
+                {formerror && (
+                  <Grid item xs={15}>
+                    <p className="text-red-700 text-sm">{formerror}</p>
+                  </Grid>
+                )}
                 <Grid item xs={12}>
-                  <Grid container justifyContent="flex-end">
-                    <Grid item>
-                      <Link to="/signup" className="text-sm text-blue-800">
-                        Don't have an account? Sign Up
-                      </Link>
+                  <TextField
+                    required
+                    fullWidth
+                    id="email"
+                    label="Email Address"
+                    name="email"
+                    {...register("email", {
+                      required: "Email is required",
+                      pattern: {
+                        value:
+                          /^([a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,})$/,
+                        message: "Invalid email format",
+                      },
+                    })}
+                    autoComplete="email"
+                  />
+                  <p className="error">{errors.email?.message}</p>
+                </Grid>
+
+                <Grid item xs={12}>
+                  <TextField
+                    required
+                    fullWidth
+                    name="password"
+                    label="Password"
+                    type="password"
+                    id="password"
+                    {...register("password", {
+                      required: "Password Field can't be empty",
+                    })}
+                    autoComplete="new-password"
+                  />
+                  <p className="error">{errors.password?.message}</p>
+                </Grid>
+                <Grid item xs={12}></Grid>
+              </Grid>
+              <Button
+                type="submit"
+                fullWidth
+                variant="outlined"
+                sx={{ mt: 3, mb: 2 }}
+              >
+                Sign In
+              </Button>
+
+              {!admin && (
+                <Grid container spacing={2} alignItems="center">
+                  <Grid item xs={12} md={6}>
+                    <h1>OR</h1>
+                  </Grid>
+                  <Grid item xs={12} md={6}>
+                    <Button
+                      startIcon={<FacebookIcon />}
+                      type="submit"
+                      fullWidth
+                      variant="outlined"
+                      sx={{ mt: 3, mb: 2 }}
+                    >
+                      Login With Facebook
+                    </Button>
+                  </Grid>
+                  <Grid className="text-center" item xs={12}>
+                    <Link
+                      sx={{
+                        color: "white",
+                        textDecoration: "none",
+                        cursor: "pointer",
+                      }}
+                    >
+                      Forgot Password?
+                    </Link>
+                  </Grid>
+                  <Grid item xs={12}>
+                    <Grid container justifyContent="flex-end">
+                      <Grid item>
+                        <Link to="/signup" className="text-sm text-blue-800">
+                          Don't have an account? Sign Up
+                        </Link>
+                      </Grid>
                     </Grid>
                   </Grid>
                 </Grid>
-              </Grid>
-            )}
+              )}
+            </Box>
           </Box>
-        </Box>
-        <Copyright sx={{ mt: 5 }} />
-      </Container>
-    </ThemeProvider>
+          <Copyright sx={{ mt: 5 }} />
+        </Container>
+      </ThemeProvider>
+    </div>
   );
 }

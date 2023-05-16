@@ -1,5 +1,5 @@
 import React from "react";
-import "./ProfileBar.css";
+import  "./ProfileBar.css";
 import { Avatar } from "@mui/material";
 import { useSelector } from "react-redux";
 import Cookies from "js-cookie";
