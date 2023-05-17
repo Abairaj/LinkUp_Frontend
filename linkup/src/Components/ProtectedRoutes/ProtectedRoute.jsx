@@ -5,11 +5,14 @@ import { Navigate } from "react-router-dom";
 import Preloader from "../Others/Preloader";
 
 export default function ProtectedRoute({ children }) {
+
   const [Is_loading, setIsLoading] = useState(true);
   const [is_auth, setIs_auth] = useState(false);
+  
   useEffect(() => {
     authenticate();
   }, []);
+
   const authenticate = () => {
     axios
       .get(`http://127.0.0.1:8000/users/auth/${Cookies.get("id")}`, {
@@ -31,6 +34,7 @@ export default function ProtectedRoute({ children }) {
         setIsLoading(false);
       });
   };
+  
   return Is_loading ? (
     <Preloader />
   ) : is_auth ? (

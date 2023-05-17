@@ -1,0 +1,41 @@
+.admin_dashboard {
+    display: flex;
+  }
+  
+  .admin_pannel_sidenav {
+    flex: 0.2;
+  }
+  
+  .admin_pannel_area {
+    flex: 1.2;
+    display: flex;
+    flex-direction: column;
+    overflow-x: auto;
+    padding-bottom: 20px; /* Add padding to make space for scrollbar */
+  }
+  
+  .user_statistic_details {
+    display: flex;
+    flex-wrap: nowrap;
+  }
+  
+  .user_statistics {
+    margin-top: 20px; /* Add margin to separate from user_statistic_details */
+  }
+  
+  .user_graph {
+    /* Add styles for the user graph */
+  }
+  
+  @media (max-width: 1025px) {
+    .admin_pannel_sidenav {
+      display: none;
+    }
+  
+    .admin_pannel_area {
+      flex: none;
+      overflow-x: initial; /* Reset overflow-x on mobile screens */
+      padding-bottom: 0; /* Remove padding for mobile screens */
+    }
+  }
+  

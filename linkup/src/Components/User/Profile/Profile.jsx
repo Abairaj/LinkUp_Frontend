@@ -35,7 +35,7 @@ const Profile = () => {
             <button className="profile__post__navbtn pe-10 pt-3">TAGGED</button>
           </div>
 
-          <Outlet />
+          <Profile_post/>
 
           <div className="profile__footer"></div>
         </div>

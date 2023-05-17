@@ -6,12 +6,17 @@ import MovieIcon from "@mui/icons-material/Movie";
 import ChatIcon from "@mui/icons-material/Chat";
 import NotificationsActiveIcon from "@mui/icons-material/NotificationsActive";
 import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
+import { Avatar } from "@mui/material";
+import ReportIcon from '@mui/icons-material/Report';
 import MenuIcon from "@mui/icons-material/Menu";
 import "./Bottomnav.css";
 
-const Bottomnav = () => {
+const Bottomnav = ({isAdmin}) => {
   return (
-    <div className="bottomnav bg-black">
+
+    <>
+    {!isAdmin?(<div className="bottomnav bg-black">
       <div className="bottomnav__icons flex justify-around pt-4 pb-4">
         <button className="group hover:bg-slate-700 p-3 rounded-md">
           <HomeIcon
@@ -62,7 +67,32 @@ const Bottomnav = () => {
           />
         </button>
       </div>
-    </div>
+    </div>):(<div className="bottomnav bg-black">
+      <div className="bottomnav__icons flex justify-around pt-4 pb-4">
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <Avatar
+            sx={{ fontSize: "30px" }}
+            className="icon last:group-hover:bg-slate-700"
+          />
+        </button>
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <PersonOutlineIcon
+            sx={{ fontSize: "40px" }}
+            className="icon group-hover:bg-slate-700"
+          />
+        </button>
+        
+        <button className="group hover:bg-slate-700 p-3 rounded-md">
+          <ReportIcon
+            sx={{ fontSize: "40px" }}
+            className=" icon group-hover:bg-slate-700"
+          />
+        </button>
+   
+      </div>
+    </div>)}
+    </>
+    
   );
 };
 

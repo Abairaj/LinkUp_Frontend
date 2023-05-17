@@ -1,151 +1,81 @@
-import * as React from "react";
-import Box from "@mui/material/Box";
-import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
-import Modal from "@mui/material/Modal";
-import { useRef } from "react";
-
-import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import "./Comment.css";
-
-import {
-  Avatar,
-} from "@mui/material";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Cookies from "js-cookie";
+import { Avatar } from "@mui/material";
 
-export default function OpenComment(props) {
-  const { post_id, user } = props;
-  console.log(post_id, "kfdslgjdfkgndfkjgnfkjgnijfnriifn");
-  const handleComments = () => {
-    handleCommentOpen();
-    axios
-      .get(`${import.meta.env.VITE_API_URL}/post/comment/?post_id=${post_id}`, {
-        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-      })
-      .then((response) => {
-        console.log(response.data);
-        setComment(response.data.data);
-      });
+const OpenComment = ({ Post_Id, is_commented }) => {
+  console.log(Post_Id);
+  const [comments, setComments] = useState([]);
+  // page and page size is for pagination of comment
+  const [page, setPage] = useState(1);
+  const pageSize = 2;
+
+  useEffect(() => {
+    fetchComments();
+    // is commented to ensure render if new comment is done
+  }, [page, is_commented]);
+
+  const fetchComments = async () => {
+    try {
+      const response = await axios.get(
+        `${import.meta.env.VITE_API_URL}/post/comment/?post_id=${Post_Id}`
+      );
+      const data = response.data;
+      console.log(response.data);
+      setComments(data);
+    } catch (error) {
+      console.error(error);
+    }
   };
 
-  const [openComment, setOpenComment] = React.useState(false);
+  // pagination logic more will be increasing page by one on each click
+  const loadMoreComments = () => {
+    setPage(page + 1);
+  };
 
-  const handleCommentOpen = () => setOpenComment(true);
-  const handleCommentClose = () => setOpenComment(false);
-  const [comment, setComment] = React.useState("");
+  // clicking less will set it to one again
+  const viewLessComments = () => {
+    setPage(1);
+  };
+  const displayedComments = comments.slice(0, page * pageSize); // comments array will be sliced according to page and page size which is initially 2 here
 
   return (
     <div>
-      <button
-        onClick={handleComments}
-        className="text-white text-semibold text-sm"
-      >
-        <ChatBubbleOutlineIcon />
-      </button>
-      <Modal
-        open={openComment}
-        onClose={handleCommentClose}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box className="w-full h-screen  bg-blend-saturation">
-          <div className="close_btn flex justify-end md:w-11/12">
-            <button
-              onClick={handleCommentClose}
-              className="text-2xl text-semibold m-2 pl-3 pr-3 pb-2 rounded hover:bg-slate-800"
+      {displayedComments.map((comment) => (
+        <div key={comment.comment_id}>
+          <div className="profilebar flex flex-row">
+            <Avatar
+              sx={{
+                height: "40px",
+                width: "40px",
+                marginRight: "6px",
+              }}
+              src={`${import.meta.env.VITE_API_URL}/${comment.user.profile}`}
             >
-              x
-            </button>
+              {comment.user.username[0]}
+            </Avatar>
+            <span className="text-bold mt-4">{comment.user.username}</span>
           </div>
-
-          <div
-            style={{ backgroundColor: "#212529" }}
-            className=" absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 shadow-lg wrapper border border-slate-50 w-fit rounded"
-          >
-            <div className="createPost_selected max-w-2xl md:flex md:flex-row">
-              <div
-                style={{ width: "320px" }}
-                className="createPost_selected_image"
-              >
-                <img
-                  className="w-full h-full"
-                  src="https://images.unsplash.com/photo-1684162485237-bda5fab36be0?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxlZGl0b3JpYWwtZmVlZHwyfHx8ZW58MHx8fHw%3D&auto=format&fit=crop&w=1000&q=60"
-                  alt=""
-                />
-              </div>
-
-              <div className="createPost_comment_box md:ps-3  md:w-2/5">
-                <div className="shareanduserbar flex flex-row pt-4 md:ps-3 md:pe-3 justify-between border-b border-s border-slate-50 ">
-                  <div className="add_comment__ flex flex-row pb-3 ps-3">
-                    <Avatar>A</Avatar>
-                    <span className="ps-2 pt-2">{user}</span>
-                  </div>
-                  <div className="comment_morebtn">
-                    <MoreHorizIcon />
-                  </div>
-                </div>
-                {comment != "" ? (
-                  comment.map((obj) => {
-                    return (
-                      <div
-                        className="comment_list overflow-y-auto pt-3"
-                        style={{ maxHeight: "200px" }}
-                        key={obj.id}
-                      >
-                        <div className="comment_individual ">
-                          <div className="comment_individual_profile flex flex-row pb-3 pt-3 ps-3">
-                            <Avatar>A</Avatar>
-                            <span className="ps-2 pt-2 pe-5">
-                              {obj.user.username}
-                            </span>
-                            <MoreHorizIcon sx={{ paddingTop: "2px" }} />
-                          </div>
-                          <div className="comment_body ps-2">
-                            <p className="ps-5">{obj.content}</p>
-                          </div>
-                        </div>
-                      </div>
-                    );
-                  })
-                ) : (
-                  <div
-                    className="comment_list overflow-y-auto pt-3"
-                    style={{ maxHeight: "200px" }}
-                  >
-                    <div className="comment_individual ">
-                      <div className="comment_individual_profile flex flex-row pb-3 pt-3 ps-3">
-                        {/* <Avatar>A</Avatar>
-                        <span className="ps-2 pt-2">user_one</span> */}
-                      </div>
-                      <div className="comment_body ps-2">
-                        <p>No Comments yet</p>
-                      </div>
-                    </div>
-                  </div>
-                )}
-
-                <div className="createPost_selected_captioninput"></div>
-
-                {/* <TextField
-                  sx={{
-                    minWidth: "290px",
-                  }}
-                  type="text"
-                  placeholder="Add Comment"
-                  InputProps={{
-                    endAdornment: (
-                      <InputAdornment position="end">
-                      </InputAdornment>
-                    ),
-
-                    style: { color: "white" },
-                  }}
-                /> */}
-              </div>
-            </div>
+          <div className="comment_content">
+            <p className="text-lg text-gray-600 ms-4 mt-1 mb-2">
+              {comment.content}
+            </p>
           </div>
-        </Box>
-      </Modal>
+        </div>
+      ))}
+
+      {comments.length > pageSize && page * pageSize < comments.length && (
+        <button onClick={loadMoreComments} className="text-sm text-gray-500">
+          More...
+        </button>
+      )}
+
+      {page > 1 && (
+        <button onClick={viewLessComments} className="text-sm text-gray-500">
+          View Less
+        </button>
+      )}
     </div>
   );
-}
+};
+
+export default OpenComment;

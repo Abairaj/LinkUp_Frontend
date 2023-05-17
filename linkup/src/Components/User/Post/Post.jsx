@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { useSelector } from "react-redux";
 import "./Post.css";
-import { Avatar} from "@mui/material";
+import { Avatar } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import SendIcon from "@mui/icons-material/Send";
@@ -15,9 +15,11 @@ import OpenComment from "../Comments/Comments";
 const Post = () => {
   const [posts, setPosts] = useState([]);
   const [like, setLike] = useState({});
-  const { register, handleSubmit, reset } = useForm();
+  const [commented, setCommented] = useState(false); // to render when new comment is done
+  const { register, handleSubmit, reset } = useForm(); // to render home page after creating a new post
   const shareSucces = useSelector((state) => state.share_success.state);
 
+  // to show hours ago and days ago
   const getDuration = (created_at) => {
     const currentTime = new Date();
     const postTime = new Date(created_at);
@@ -36,26 +38,22 @@ const Post = () => {
     }
   };
 
+  // creating comments useform hook
   const onSubmit = (data, postId) => {
-    console.log(data[`comment-${postId}`]);
-    console.log(data, postId);
     let formdata = {
       post: postId,
-      user: Cookies.get("id"),
+      user: parseInt(Cookies.get("id")),
       content: data[`comment-${postId}`],
     };
     axios
-      .post(
-        `${import.meta.env.VITE_API_URL}/post/comment/${Cookies.get("id")}`,
-        formdata,
-        {
-          headers: { Authorization: `Bearer ${Cookies.get("token")}` },
-        }
-      )
+      .post(`${import.meta.env.VITE_API_URL}/post/comment/`, formdata, {
+        headers: { Authorization: `Bearer ${Cookies.get("token")}` },
+      })
       .then((response) => {
         alert(response.data.message);
       });
     reset();
+    setCommented(!commented);
   };
 
   const handleLikes = (post_id) => {
@@ -88,11 +86,12 @@ const Post = () => {
     });
   };
 
+  // fetching the post details
   useEffect(() => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/post/all_post/`,
+          `${import.meta.env.VITE_API_URL}/post/posts/${Cookies.get('id')}`,
           {
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
           }
@@ -161,10 +160,6 @@ const Post = () => {
                     </button>
                   )}
 
-                  <OpenComment
-                    post_id={post.post_id}
-                    user={post.user.username}
-                  />
                   <SendIcon className="postIcon" />
                 </div>
                 <div className="post__iconSave">
@@ -179,12 +174,18 @@ const Post = () => {
             </p>
             <p className="pb-3">{post.caption}</p>
 
+            <OpenComment
+              Post_Id={post.post_id}
+              user={post.user.username}
+              is_commented={commented}
+            />
+
             <form
               className="post__commentForm"
               onSubmit={handleSubmit((data) => onSubmit(data, post.post_id))}
             >
               <input
-                className="bg-black outline-none"
+                className="bg-black outline-none w-full"
                 type="text"
                 name={`comment-${post.post_id}`}
                 placeholder="Add comment"
@@ -194,13 +195,6 @@ const Post = () => {
                 Post
               </button>
             </form>
-
-            {/* <input
-              className="bg-black outline-none"
-              type="text"
-              placeholder="Add comment"
-              onChange={(e)=>setComment(e.target.value)}
-            /> */}
           </div>
         ))}
     </>

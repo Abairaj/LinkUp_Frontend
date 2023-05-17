@@ -43,7 +43,7 @@ export default function CreatePost() {
 
     axios
       .post(
-        `${import.meta.env.VITE_API_URL}/post/create_post/${Cookies.get("id")}`,
+        `${import.meta.env.VITE_API_URL}/post/posts/${Cookies.get("id")}`,
         formdata,
         {
           headers: {

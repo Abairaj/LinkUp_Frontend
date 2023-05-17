@@ -4,5 +4,9 @@
 }
 
 .profile__nav {
-  flex: 0.5;
+  flex: 0.1;
+}
+
+.profile_area{
+  flex:0.7;
 }
