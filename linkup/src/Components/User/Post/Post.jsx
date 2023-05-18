@@ -91,7 +91,7 @@ const Post = () => {
     const fetchPosts = async () => {
       try {
         const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/post/posts/${Cookies.get('id')}`,
+          `${import.meta.env.VITE_API_URL}/post/getpost/${Cookies.get('id')}`,
           {
             headers: { Authorization: `Bearer ${Cookies.get("token")}` },
           }

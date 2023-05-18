@@ -11,21 +11,16 @@ import "./Reels.css";
 
 const Reels = () => {
   const [reels, setReels] = useState([]);
-  const [currentVideo, setCurrentVideo] = useState(null);
-  const videoRefs = useRef([]);
+  const playVideo = useRef([])
 
   useEffect(() => {
     fetchReels();
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
   }, []);
 
   const fetchReels = async () => {
     try {
       const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}/post/posts/${Cookies.get(
+        `${import.meta.env.VITE_API_URL}/post/getpost/${Cookies.get(
           "id"
         )}?filter=reels`,
         {
@@ -35,59 +30,9 @@ const Reels = () => {
         }
       );
       setReels(response.data.data);
+      console.log(response.data.data);
     } catch (error) {
       console.error(error);
-    }
-  };
-
-  const handleScroll = () => {
-    const visibleVideos = getVisibleVideos();
-    const firstVisibleVideo = visibleVideos[0];
-
-    if (firstVisibleVideo && currentVideo !== firstVisibleVideo.id) {
-      setCurrentVideo(firstVisibleVideo.id);
-      pauseAllVideos();
-      playVideo(firstVisibleVideo.id);
-    }
-  };
-
-  const getVisibleVideos = () => {
-    return reels.filter((reel) => {
-      const videoRef = videoRefs.current[reel.id];
-      if (!videoRef) return false;
-
-      const rect = videoRef.getBoundingClientRect();
-      return rect.top >= 0 && rect.bottom <= window.innerHeight;
-    });
-  };
-
-  const playVideo = (videoId) => {
-    const videoRef = videoRefs.current[videoId];
-    if (videoRef) {
-      videoRef.play();
-    }
-  };
-
-  const pauseAllVideos = () => {
-    videoRefs.current.forEach((videoRef) => {
-      if (videoRef && !videoRef.paused) {
-        videoRef.pause();
-      }
-    });
-  };
-
-  const handleVideoClick = (e, reel) => {
-    const videoId = e.target.dataset.reelId;
-    if (currentVideo === videoId) {
-      if (e.target.paused) {
-        e.target.play();
-      } else {
-        e.target.pause();
-      }
-    } else {
-      setCurrentVideo(videoId);
-      pauseAllVideos();
-      e.target.play();
     }
   };
 
@@ -97,62 +42,32 @@ const Reels = () => {
         <Sidenav />
       </div>
 
-      <div className="reels_content">
-        {reels.length > 0 ? (
-          <div className="reels_container">
-            <div className="reels_grid">
-              {reels.map((reel) => (
-                                  <center>
-                <div className="reel" key={reel.id}>
-                  <div className="reel_video">
+      <div className="reels__area">
+        <div className="reels__container">
+          {reels.length > 0
+            ? reels.map((reel) => {
+                return (
+                  <div
+                    key={reel.post_id}
+                    className="reels__player mt-3 mb-3 flex flex-row relative"
+                  >
                     <video
-                      ref={(ref) => (videoRefs.current[reel.id] = ref)}
+                      className="reels_video"
                       src={`${import.meta.env.VITE_API_URL}/${reel.media_url}`}
-                      alt=""
-                      loop
-                      className={`reel_video ${
-                        currentVideo === reel.id ? "active" : ""
-                      }`}
-                      controls={false}
-                      onClick={(e) => handleVideoClick(e, reel)}
-                      data-reel-id={reel.id}
-                    />
-                    {currentVideo === reel.id && !reel.videoPlaying && (
-                      <div className="resume_button">
-                        <button
-                          onClick={(e) => handleVideoClick(e, reel)}
-                          data-reel-id={reel.id}
-                        >
-                          Resume
-                        </button>
-                      </div>
-                    )}
-                    <div className="reel_buttons">
-                      <button className="reel_button">
-                        <FavoriteBorderIcon />
-                      </button>
-                      <button className="reel_button">
-                        <ModeCommentIcon />
-                      </button>
-                      <button className="reel_button">
-                        <SendIcon />
-                      </button>
-                      <button className="reel_button">
-                        <BookmarkIcon />
-                      </button>
-                      <button className="reel_button">
-                        <MoreHorizIcon />
-                      </button>
+                      autoPlay
+                    ></video>
+                    <div className="reels__buttons flex flex-col absolute bottom-40 right-1">
+                      <FavoriteBorderIcon sx={{ marginBottom: "20px" }} />
+                      <ModeCommentIcon sx={{ marginBottom: "20px" }} />
+                      <SendIcon sx={{ marginBottom: "20px" }} />
+                      <BookmarkIcon sx={{ marginBottom: "20px" }} />
+                      <MoreHorizIcon sx={{ marginBottom: "20px" }} />
                     </div>
                   </div>
-                </div>
-                </center>
-              ))}
-            </div>
-          </div>
-        ) : (
-          <p>No reels yet</p>
-        )}
+                );
+              })
+            : "no post yet"}
+        </div>
       </div>
     </div>
   );
