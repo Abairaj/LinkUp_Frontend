@@ -8,7 +8,9 @@ export default function Profile_post() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/post/posts/${Cookies.get("id")}?filter=user_post`)
+      .get(`${API_URL}/post/posts/${Cookies.get("id")}?filter=user_post`,{headers: {
+        Authorization: `Bearer ${Cookies.get("token")}`,
+      }},)
       .then((response) => {
         console.log(response.data.data);
         setUserPosts(response.data.data);
