@@ -8,9 +8,11 @@ export default function Profile_post() {
 
   useEffect(() => {
     axios
-      .get(`${API_URL}/post/posts/${Cookies.get("id")}?filter=user_post`,{headers: {
-        Authorization: `Bearer ${Cookies.get("token")}`,
-      }},)
+      .get(`${API_URL}/post/posts/${Cookies.get("id")}?filter=user_post`, {
+        headers: {
+          Authorization: `Bearer ${Cookies.get("token")}`,
+        },
+      })
       .then((response) => {
         console.log(response.data.data);
         setUserPosts(response.data.data);
@@ -29,7 +31,12 @@ export default function Profile_post() {
               <img src={`${API_URL}/${post.media_url}`} alt="" />
             )}
             {post.media_type === "Video" && (
-              <video src={`${API_URL}/${post.media_url}`} width="" height="" controls />
+              <video
+                src={`${API_URL}/${post.media_url}`}
+                width=""
+                height=""
+                controls
+              />
             )}
           </React.Fragment>
         ))

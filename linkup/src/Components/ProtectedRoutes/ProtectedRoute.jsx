@@ -5,10 +5,9 @@ import { Navigate } from "react-router-dom";
 import Preloader from "../Others/Preloader";
 
 export default function ProtectedRoute({ children }) {
-
   const [Is_loading, setIsLoading] = useState(true);
   const [is_auth, setIs_auth] = useState(false);
-  
+
   useEffect(() => {
     authenticate();
   }, []);
@@ -34,7 +33,7 @@ export default function ProtectedRoute({ children }) {
         setIsLoading(false);
       });
   };
-  
+
   return Is_loading ? (
     <Preloader />
   ) : is_auth ? (

@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useRef } from "react";
-import {Button, Modal } from "@mui/material";
+import { Button, Modal } from "@mui/material";
 import "./ProfileUploadPopup.css";
 import axios from "axios";
 import { useSelector } from "react-redux";

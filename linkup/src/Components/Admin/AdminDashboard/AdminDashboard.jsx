@@ -42,11 +42,8 @@ export default function AdminDashboard() {
           </div>
         </div>
 
-        <Bottomnav isAdmin={true}/>
+        <Bottomnav isAdmin={true} />
       </div>
     </>
   );
 }
-
-
-

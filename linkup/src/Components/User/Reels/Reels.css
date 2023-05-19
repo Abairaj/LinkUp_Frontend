@@ -1,69 +1,74 @@
 .Reels {
-    display: flex;
-    justify-content: space-between;
-    height: 100vh;
-    overflow: hidden;
-    position: relative;
-    
-  }
-  .reels__container {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    overflow-y: scroll;
-    height: 100vh;
-    width: 30vw;
-    max-width: 500px;
-    border-radius: 20px;
-    scroll-snap-type: y mandatory;
-    scrollbar-width: none;
+  display: flex;
+  justify-content: space-between;
+  height: 100vh;
+  overflow: hidden;
+  position: relative;
+}
+.reels__container {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  overflow-y: scroll;
+  height: 100vh;
+  width: 30vw;
+  max-width: 500px;
+  border-radius: 20px;
+  scroll-snap-type: y mandatory;
+  scrollbar-width: none;
+}
+
+.reels_video {
+  height: 100vh;
+  width: 100vw;
+}
+
+.reels__container::-webkit-scrollbar {
+  display: none;
+}
+.reels_nav {
+  flex: 0 0 20%;
+}
+
+.reels_area {
+  display: flex;
+  justify-content: center;
+}
+
+@media (max-width: 1000px) {
+  .reels_nav {
+    flex: none;
   }
 
-  .reels_video{
+  .reels__container {
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 0;
+    transform: none;
+    height: 100vh;
+    width: 100vw;
+    padding: 0;
+    max-width: 1000px;
+    margin: 0;
+  }
+
+  .reels_video {
     height: 100vh;
     width: 100vw;
   }
-  
-  .reels__container::-webkit-scrollbar{
-    display: none;
+
+  .reels_area {
+    height: 100vh;
   }
-  .reels_nav {
-    flex: 0 0 20%;
-  }
-  
-  .reels_area{
-    display: flex;
+
+  .Reels {
     justify-content: center;
   }
 
-  @media (max-width: 1000px) {
-
-    .reels_nav{
-        flex: none;
-    }
-
-    .reels__container {
-        bottom: 0;
-        left: 0;
-        right: 0;
-        top: 0;
-        transform: none;
-        height: 100vh;
-        width: 100vw;
-        padding: 0;
-        margin: 0;
-      }
-
-      .reels_video{
-        height: 100vh;
-        width: 100vw;
-      }
-
-      .reels_area{
-        height: 100vh;
-        
-      }
-      
-
+  .reels__buttons {
+    right: 14%;
+    bottom: 25%;
   }
+}

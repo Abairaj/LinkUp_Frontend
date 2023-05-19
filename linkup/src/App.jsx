@@ -9,10 +9,11 @@ import EditProfile from "./Components/User/EditProfile/EditProfile";
 import AdminDashboard from "./Components/Admin/AdminDashboard/AdminDashboard";
 import ProtectedRoute from "./Components/ProtectedRoutes/ProtectedRoute";
 import Preloader from "./Components/Others/Preloader";
-import Messages from "./Messages/Messages";
+import Messages from "./Components/Messages/Messages";
 import Explore from "./Components/User/Explore/Explore";
 import Reels from "./Components/User/Reels/Reels";
 import OpenComment from "./Components/User/Comments/Comments";
+import AdminUsers from "./Components/Admin/AdminUsers/AdminUsers";
 
 function App() {
   return (
@@ -35,6 +36,15 @@ function App() {
             element={
               <ProtectedRoute>
                 <AdminDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="/admin_users"
+            element={
+              <ProtectedRoute>
+                <AdminUsers/>
               </ProtectedRoute>
             }
           />
