@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+export const COLUMNS = [
+  {
+    Header: "Username",
+    accessor:"username"
+  },
+  {
+    Header: "Full Name",
+    accessor:"full_name"
 
-export default function Column() {
-    const [data,setData] = useState([])
+  },
+  {
+    Header: "Email",
+    accessor:"email"
 
-    useEffect(() => {
-        FetchData();
-      }, []);
-    
-      const FetchData = async () => {
-        const response = await axios.get(
-          `${import.meta.env.VITE_API_URL}/admin/get_userlist/`
-        );
-        setData(response.data);
-      };
-  return (
-    <div>
-      
-    </div>
-  )
-}
+  },
+  {
+    Header: "Phone",
+    accessor:"phone"
+
+  },
+  {
+    Header: "Date Joined",
+    accessor:"date_joined"
+
+  },
+];
