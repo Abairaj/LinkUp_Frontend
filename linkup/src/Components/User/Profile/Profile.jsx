@@ -10,20 +10,20 @@ import { NavLink, Outlet } from "react-router-dom";
 
 const Profile = () => {
   return (
-    <div className="profile">
-      <div className="profile__nav">
+    <div className="profile flex   lg:justify-evenly w-fit lg:w-2/3 pe-0">
+      <div className="profile_nav md:w-1/6">
         <Sidenav />
       </div>
 
-      <div className="profile__area">
-        <div className="profile__bar">
+      <div className="profile_area  justify-center  lg:w-5/6">
+        <div className="profile_bar">
           <ProfileBar />
         </div>
-        <div className="profile__stories  pt-7">
+        <div className="profile_stories">
           <Stories />
         </div>
-        <div className="profile__posts h-screen mt-10 w-full">
-          <div className="profile__post__nav flex space-x-4 justify-center text-sm mt-3 border-t border-gray-500 pb-3">
+        <div className="profile__posts">
+          <div className="profile__post__nav flex space-x-4 justify-center text-sm mt-3 border-t border-gray-500 pb-3 ">
             <NavLink to={"post"} className="profile__post__navbtn pe-10 pt-3">
               {" "}
               <CollectionsIcon />
@@ -34,16 +34,14 @@ const Profile = () => {
             </NavLink>
             <button className="profile__post__navbtn pe-10 pt-3">TAGGED</button>
           </div>
-
-          <Profile_post />
-
-          <div className="profile__footer"></div>
+          <div className="flex flex-row justify-center">
+            <Profile_post />
+          </div>
         </div>
       </div>
-
-      <Bottomnav />
     </div>
   );
 };
 
 export default Profile;
+

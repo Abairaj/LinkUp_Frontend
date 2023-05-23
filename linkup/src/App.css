@@ -1,4 +1,10 @@
-html {
-  background-color: black;
-  color: white;
+:root {
+  --primary: black;
+  --secondary: #ffffff;
+}
+
+
+body {
+  background-color: var(--primary);
+  color: var(--secondary);
 }

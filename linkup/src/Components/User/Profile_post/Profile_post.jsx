@@ -23,15 +23,16 @@ export default function Profile_post() {
   }, []);
 
   return (
-    <div className="profile__post flex-wrap justify-center grid grid-cols-3">
+    <div className="profile__post justify-center grid grid-cols-3 max-w-6xl pe-2">
       {userPosts.length > 0 ? (
         userPosts.map((post) => (
           <React.Fragment key={post.id}>
             {post.media_type === "Image" && (
-              <img src={`${API_URL}/${post.media_url}`} alt="" />
+              <img className="pe-2 ps-2 pb-2 pt-2" src={`${API_URL}/${post.media_url}`} alt="" />
             )}
             {post.media_type === "Video" && (
               <video
+              className="pe-2 ps-2 pb-2 pt-2"
                 src={`${API_URL}/${post.media_url}`}
                 width=""
                 height=""

@@ -11,9 +11,7 @@ const Timeline = () => {
           <Post />
         </div>
       </div>
-      <div className="timeline__right">
-        <Suggestions />
-      </div>
+
     </div>
   );
 };

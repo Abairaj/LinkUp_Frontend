@@ -44,7 +44,7 @@ function App() {
             path="/admin_users"
             element={
               <ProtectedRoute>
-                <AdminUsers/>
+                <AdminUsers />
               </ProtectedRoute>
             }
           />

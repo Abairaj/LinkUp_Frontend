@@ -1,0 +1,41 @@
+.tablerow {
+  border: white 2px solid;
+}
+
+.tablerow > td {
+  padding: 25px;
+  border: 2px white solid;
+}
+
+.tablehead {
+  border: white 2px solid;
+}
+
+.tablehead > tr > th {
+  padding: 25px;
+  border: 2px white solid;
+  font-size: 20px;
+}
+
+
+.ban_btn{
+    padding: 3px 15px 3px 15px;
+    border-radius: 54px;
+    background-color: red;
+
+}
+
+
+.unban_btn{
+    padding: 3px 15px 3px 15px;
+    border-radius: 54px;
+    background-color: green;
+}
+
+.ban_btn:hover{
+    background-color: rgb(214, 33, 33);
+}
+
+.unban_btn:hover{
+    background-color: rgb(16, 133, 16);
+}

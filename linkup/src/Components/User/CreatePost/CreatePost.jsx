@@ -1,12 +1,7 @@
 import * as React from "react";
 import Box from "@mui/material/Box";
 
-import {
-  Avatar,
-  Button,
-  InputAdornment,
-  TextField,
-} from "@mui/material";
+import { Avatar, Button, InputAdornment, TextField } from "@mui/material";
 import Modal from "@mui/material/Modal";
 import PhotoIcon from "@mui/icons-material/Photo";
 import { useRef } from "react";

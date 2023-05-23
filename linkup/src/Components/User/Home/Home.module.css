@@ -12,6 +12,11 @@
   flex: 0.7;
 }
 
+/* .home_suggestions{
+  flex: 0.1;
+  justify-content: end;
+} */
+
 @media (max-width: 550px) {
   .home__nav {
     display: none;

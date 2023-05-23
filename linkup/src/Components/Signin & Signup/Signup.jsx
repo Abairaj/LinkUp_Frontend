@@ -15,6 +15,7 @@ import { useSelector } from "react-redux";
 import { useNavigate, Link } from "react-router-dom";
 import logo from "./../../Assets/logotrans.png";
 import "./Signup.css";
+import Cookies from "js-cookie";
 
 function Copyright(props) {
   return (
@@ -53,15 +54,20 @@ export default function SignUp() {
   const { errors } = formState;
 
   const onFormSubmit = (data) => {
-    axios
-      .post(`${ApiURL}/users/register/`, data)
-      .then((response) => {
-        if (response.status == 201) {
-          navigate("/signin");
-        } else if (response.status == 400) {
-          alert("signup failed try again");
-        }
-      });
+    axios.post(`${ApiURL}/users/register/`, data).then((response) => {
+      if (response.status == 201) {
+        Cookies.remove('id')
+        Cookies.remove('token')
+        navigate("/signin");
+      } else if (response.status == 400) {
+        alert("signup failed try again");
+      }
+    }).catch(error=>{
+      console.log(error)
+      if (error.response.status === 403){
+        alert(error.response.data.message)
+      }
+    });
   };
 
   const onErrors = (errors) => {
@@ -147,8 +153,8 @@ export default function SignUp() {
                   id="fullname"
                   type="text"
                   label="Fullname"
-                  name="fullname"
-                  {...register("fullname", {
+                  name="full_name"
+                  {...register("full_name", {
                     required: "fullname can't be empty",
                     pattern: {
                       value:
@@ -159,7 +165,7 @@ export default function SignUp() {
                     },
                   })}
                 />
-                <p className="error">{errors.fullname?.message}</p>
+                <p className="error">{errors.full_name?.message}</p>
               </Grid>
               <Grid item xs={12}>
                 <TextField

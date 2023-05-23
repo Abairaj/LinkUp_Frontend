@@ -1,10 +1,11 @@
 .explore_nav {
-  flex: 0.2;
+  /* flex: 0.1; */
 }
 
-/* .explore_post{
-    flex: 0.6;
-} */
+.explore_posts{
+    /* flex: 0.7; */
+    margin-top: 25px;
+}
 
 @media (max-width: 1024px) {
   .explore_nav {

@@ -7,8 +7,7 @@ import "./Reels.css";
 
 const Reels = () => {
   const [reels, setReels] = useState([]);
-  const [playing,setPlaying] = useState({});
-
+  const [playing, setPlaying] = useState({});
 
   useEffect(() => {
     fetchReels();
@@ -28,7 +27,7 @@ const Reels = () => {
       );
       setReels(response.data.data);
       console.log(response.data.data);
-      setPlaying(new Array(response.data.data.length).fill(true))
+      setPlaying(new Array(response.data.data.length).fill(true));
     } catch (error) {
       console.error(error);
     }
@@ -42,7 +41,15 @@ const Reels = () => {
 
       <div className="reels__area">
         <div className="reels__container">
-          {reels.length > 0 ? <VideoPlayer videos={reels} setPlaying={setPlaying} playing ={playing}/> : "No posts yet"}
+          {reels.length > 0 ? (
+            <VideoPlayer
+              videos={reels}
+              setPlaying={setPlaying}
+              playing={playing}
+            />
+          ) : (
+            "No posts yet"
+          )}
         </div>
       </div>
     </div>

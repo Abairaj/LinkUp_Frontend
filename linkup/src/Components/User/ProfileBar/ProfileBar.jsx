@@ -8,8 +8,8 @@ const ProfileBar = () => {
   const navigate = useNavigate();
   const User = useSelector((state) => state.User.User);
   return (
-    <div className="profilebar flex flex-row">
-      <div className="profilebar__avatar pt-16 ps-10 pe-10">
+    <div className="profilebar flex flex-row ps-10">
+      <div className="profilebar__avatar pt-16 ps-10 pe-5 lg:pe-10">
         <Avatar className="avatar">A</Avatar>
       </div>
       <div className="profile__info pt-20 ps-10">
